@@ -5,7 +5,6 @@
     <title>Anna-Lena kodar</title>
     <link href="./main.css" rel="stylesheet" type="text/css"
   </head>
-
   <body>
     <h1>Hjälp mig välja mellan... </h1>
     <div class="inputSection">
@@ -15,8 +14,9 @@
       <button class="addOption">Lägg till</button>
     </div>
     <div class="resultSection"></div>
-    <button>Wohoo!</button>
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <button class="submit">Wohoo!</button>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
       $(function() {
         $('.resultSection').hide()
@@ -25,8 +25,20 @@
           $('.inputs').append('<input></input>')
         }
         $('.addOption').click(add_option)
+
+        var options = []
+        var submit = function() {
+          $('.inputSection').hide()
+          $('.resultSection').css('display', 'flex')
+          $('input').each(function() {
+            options.push($(this).val())
+          })
+          var winner = options[Math.floor(Math.random() * options.length)]
+          console.log(winner)
+          $('.resultSection').text(winner)
+        }
+        $('.submit').click(submit)
       })
     </script>
   </body>
-
 </html>
